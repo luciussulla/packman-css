@@ -1,0 +1,200 @@
+<html>
+	<head>
+		<style>
+			.path {
+				position: relative; 
+				width: 400px; 
+				height: 100px; 
+				background: #333; 
+				padding: 20px; 
+				box-sizing: border-box;
+				top: 100px; 
+				margin: 0 auto; 
+				overflow: hidden; 
+			}
+			
+			.path::after {
+				content: "";
+				display: block; 
+				width: 90%; 
+				border-top: 12px dotted white; 
+				position: absolute; 
+				top: 50%;
+				transform: translateY(-50%);
+			}
+			
+			.pacman {
+				position: absolute; 
+				z-index: 99;
+				animation: moveIt 4s linear infinite;
+			}
+			
+			.pacman::before, .pacman::after {
+				content: "";
+				display:block; 
+				height: 0; 
+				width: 0;
+				position: absolute; 
+				border: 30px solid yellow; 
+			}	
+			
+			.pacman::before {
+				border-right-color: transparent; 
+				border-bottom-color: transparent; 
+				border-radius: 50%; 
+				animation: mouthTop .7s ease infinite;
+			}
+			
+			.pacman::after {
+				border-right-color: transparent; 
+				border-top-color: transparent;
+				border-radius: 50%; 
+				animation: mouthDown .7s ease infinite;
+			}
+			
+			@keyframes mouthTop {
+				50% {
+					transform: rotate(43deg);
+				}
+			}
+			
+			@keyframes mouthDown {
+				50% {
+					transform: rotate(-43deg);
+				}
+			}
+			
+			@keyframes moveIt {
+				0% {
+					left: -20%; 
+				}
+				
+				100% {
+					left: 100%; 
+				}
+			}
+			
+			.ghost {
+				z-index:99;
+				position: absolute; 
+				top: 50%; 
+				height: 70px; 
+				margin-top: -35px; 
+				width: 60px; 
+				margin-left: 100px; 
+				background: red;
+				border-top-left-radius: 50%; 
+				border-top-right-radius: 50%; 
+				animation: ghostMove 4s linear infinite,
+									 ghostFlash .5s linear infinite alternate;
+			}
+			
+			.ghost::before, .ghost::after {
+				content: "";
+				position: absolute; 
+				background: white; 
+				height: 25px; 
+				width: 20px; 
+				border-radius: 50%; 
+			}
+			
+			.ghost::before {
+				top: 14px; 
+				left: 4px; 
+			}
+			
+			.ghost::after {
+				top:14px; 
+				left:  35px; 
+			}
+			
+			.eyes::before, .eyes::after {
+				content: "";
+				position: absolute; 
+				width: 10px; 
+				height: 10px; 
+				border-radius: 50%; 
+				background-color: blue; 
+				z-index: 100; 
+				animation: eyemove 2s linear infinite; 
+			}
+			.eyes::before {
+				top: 25px; 
+				left: 7px; 
+			}
+			.eyes::after {
+				top: 25px; 
+				right: 12px; 
+			}
+			
+			@keyframes ghostMove {
+			0% {
+				left: -20%; 
+			}
+			100% {
+				left: 100%;
+			}
+		}
+			
+		.skirt, .skirt::before, .skirt::after {
+				position: absolute; 
+				height: 0px; 
+			  width: 0px;
+				border: solid 10px #333; 
+			  bottom: -10px;	
+		  	border-top-color: transparent;
+		}
+			
+		.skirt:before, .skirt::after {
+			content: "";
+		}
+			.skirt::before {
+				left: 10px; 
+			}
+			.skirt::after {
+				left: 30px; 
+			}
+			
+			@keyframes eyemove {
+				0% {
+					transform: translateX(0px)
+				}
+				25% {
+					transform: translateX(-7px); 
+				}
+				50% {
+					transform: translateX(0px);
+				}
+				75% {
+					transform: translateX(7px);
+				}
+				100% {
+					transform: translateX(0px);
+				}
+			}
+			
+			@keyframes ghostFlash {
+				0% {
+					background-color: red; 
+				}
+				100% {
+					background-color: hotpink;
+				}
+			} 
+		
+		</style>
+	</head>
+	<body>
+		
+		<section>
+			<div class="path">
+				<div class="pacman"></div>
+				<div class="ghost">
+					<div class="eyes"></div>
+					<div class="skirt"></div>
+				</div>
+			</div>
+		</section>
+		
+	</body>
+</html>
